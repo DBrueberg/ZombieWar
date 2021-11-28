@@ -3,16 +3,20 @@
  * Teacher.java
  * November 28, 2021
  * Updated(Initials, Date, Changes):
- *
+ *  (DAB, 11/28/2021, added main class comment)
  *
  */
 
+// Package name
 package entity;
 
+/**
+ * The Teacher Class extends Survivor and has a base health and attack.
+ */
 public class Teacher extends Survivor {
 
     // Class constructor passing in health and attack to superclass
-    public Teacher(){
+    public Teacher() {
         super(50, 5);
     }
 }
