@@ -22,6 +22,8 @@ public class GameControl {
     // The final variables that control/display the Game menu
     public final int MATCH_OPTION = 1;
     public final int END_OPTION = 2;
+    // Creating a new Scanner object to get user input
+    public static Scanner input = new Scanner(System.in);
 
     /**
      * Public constructor that will construct a new
@@ -37,6 +39,7 @@ public class GameControl {
     public void start() {
         // Display the in Game menu to the Player
         displayMenu();
+        GameControl.input.close();
     }
 
     /**
@@ -94,8 +97,6 @@ public class GameControl {
      * entered.
      */
     public int choiceValidator() {
-        // Creating a new Scanner object to get user input
-        Scanner input = new Scanner(System.in);
         // Initializing and priming choice for Player input
         int choice = 0;
 
@@ -103,9 +104,9 @@ public class GameControl {
         // a possible InputMismatchException
         try {
             // Requesting the int choice from the Player
-            choice = input.nextInt();
+            choice = GameControl.input.nextInt();
             // Clearing the Scanner
-            input.nextLine();
+            GameControl.input.nextLine();
 
             // Adding a newLine for formatting
             System.out.println();
@@ -113,12 +114,8 @@ public class GameControl {
         } catch (Exception e) {
             // The Player is notified with a message
             System.out.println("Please enter a valid int choice\n");
-            // The Scanner is cleared for the next input
-            input.nextLine();
+            GameControl.input.nextLine();
         }
-
-        // Closing the Scanner
-        input.close();
 
         // Returning the Player entered choice to the caller
         return choice;

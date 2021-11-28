@@ -1,3 +1,5 @@
+package entity;
+
 public class Teacher extends Survivor {
 
     public Teacher(){

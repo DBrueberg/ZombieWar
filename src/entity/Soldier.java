@@ -1,3 +1,5 @@
+package entity;
+
 public class Soldier extends Survivor {
 
     public Soldier(){

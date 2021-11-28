@@ -1,3 +1,5 @@
+package entity;
+
 public class Tank extends Zombie {
 
     public Tank(){
