@@ -71,13 +71,13 @@ public class GameControl {
 
             // A switch is used to execute the choice of the Player
             switch (choice) {
-                // The MATCH_OPTION case will begin a Match by calling PlayMatch
+                // The MATCH_OPTION case will begin a Match by calling PlayMatchControl
                 case MATCH_OPTION:
                     // CALL PlayMatch Here
                     break;
-                // The END_OPTION case will end the Game by calling EndGame
+                // The END_OPTION case will end the Game by calling EndGameControl
                 case END_OPTION:
-                    // CALL EndGame Here
+                    // CALL EndGameControl Here
                     // EndOption should set isPlaying to false
                     // to terminate the Game
                     break;
