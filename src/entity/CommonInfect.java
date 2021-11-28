@@ -11,6 +11,7 @@ package entity;
 
 public class CommonInfect extends Zombie {
 
+
     // Class constructor passing in health and attack to superclass
     public CommonInfect(){
         super(30,5);

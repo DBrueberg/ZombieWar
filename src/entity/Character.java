@@ -14,6 +14,7 @@ public class Character {
     private int health;
     private int attack;
 
+
     // Class constructor receives health and attack from subclasses and initializes
     // the instance variables
     public Character(int health, int attack){
@@ -21,20 +22,25 @@ public class Character {
         this.attack = attack;
     }
 
+
     // Setter method for the health instance variable
     public void setHealth(int health){
         this.health = health;
     }
 
+
     // Getter method for the health instance variable
+
     public int getHealth(){
         return this.health;
     }
+
 
     // Getter method for the attack instance variable
     public int getAttack() {
         return attack;
     }
+
 
     // Attack method calculates the passed in characters health after the attack
     // and sets the characters health to the result

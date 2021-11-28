@@ -11,6 +11,7 @@ package entity;
 
 public class Soldier extends Survivor {
 
+
     // Class constructor passing in health and attack to superclass
     public Soldier(){
         super(100,10);
