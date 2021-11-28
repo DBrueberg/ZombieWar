@@ -1,3 +1,5 @@
+package entity;
+
 public class Character {
     private int health;
     private int attack;

@@ -1,3 +1,5 @@
+package entity;
+
 public class Zombie extends Character {
 
     public Zombie(int health, int attack){
