@@ -10,6 +10,10 @@
 // Package name
 package control;
 
+/**
+ * The EndGameControl will perform the actions needed before terminating 
+ * a game. It will be called through the EndOption found in GameControl. 
+ */
 public class EndGameControl {
 
      /**
