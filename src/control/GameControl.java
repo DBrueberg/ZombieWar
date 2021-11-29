@@ -11,6 +11,7 @@
 package control;
 
 // Importing the needed java utilities
+
 import java.util.Scanner;
 
 /**
@@ -73,13 +74,20 @@ public class GameControl {
             switch (choice) {
                 // The MATCH_OPTION case will begin a Match by calling PlayMatchControl
                 case MATCH_OPTION:
-                    // CALL PlayMatch Here
+                    // Constructing a new PlayMatchControl object that will allow a
+                    // new Match to be played
+                    PlayMatchControl playMatchControl = new PlayMatchControl();
+
+                    // Creating a new Match
+                    playMatchControl.createMatch();
+
+                    // Printing the results of the Match
+                    playMatchControl.createPrintReportControl();
                     break;
                 // The END_OPTION case will end the Game by calling EndGameControl
                 case END_OPTION:
-                    // CALL EndGameControl Here
-                    // EndOption should set isPlaying to false
-                    // to terminate the Game
+//                    // Setting isPlaying to the value returned from endGame
+//                    isPlaying = EndGameControl.endGame();
                     break;
                 // If no case item is selected the menu is displayed again
                 default:
