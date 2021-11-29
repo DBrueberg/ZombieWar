@@ -26,7 +26,7 @@ public class EndGameControl {
     /**
      * 
      * This will set isPlaying to false in GameControl 
-     * and and the while loop.
+     * and end the while loop.
      */
     public static boolean endGame() {
         return false;
