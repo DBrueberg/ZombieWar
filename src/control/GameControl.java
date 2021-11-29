@@ -86,8 +86,8 @@ public class GameControl {
                     break;
                 // The END_OPTION case will end the Game by calling EndGameControl
                 case END_OPTION:
-//                    // Setting isPlaying to the value returned from endGame
-//                    isPlaying = EndGameControl.endGame();
+                    // Setting isPlaying to the value returned from endGame
+                    isPlaying = EndGameControl.endGame();
                     break;
                 // If no case item is selected the menu is displayed again
                 default:
