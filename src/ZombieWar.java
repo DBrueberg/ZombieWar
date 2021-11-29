@@ -22,6 +22,10 @@ public class ZombieWar {
      * @param args
      */
     public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println((int) Math.floor(Math.random()*2));
+        }
+
         // Constructing a new Game instance
         Game game = new Game();
         // Executing game to begin the Game
