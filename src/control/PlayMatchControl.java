@@ -90,8 +90,8 @@ public class PlayMatchControl {
      * and print the Report to the screen.
      */
     public void createPrintReportControl() {
-//        PrintReportControl printReportControl = new PrintReportControl(getSurvivorList(), getZombieList());
-//        printReportControl.printReport();
+        PrintReportControl printReportControl = new PrintReportControl(getSurvivorList(), getZombieList());
+        printReportControl.printReport();
     }
 
     /**
