@@ -14,6 +14,7 @@ package control;
 
 import entity.Character;
 import entity.CharacterList;
+import entity.Match;
 
 // Importing needed java.util
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class PlayMatchControl {
      * The createMatch() method will create a new Match using the
      * generated Character Lists. It will first print the Character List
      * information before starting the Match. After the Match is over the
-     * Class specific Character Lists will be updated to reflect the results.
+     * Class specific Character Lists will be updated `to reflect the results.
      */
     public void createMatch() {
         // Printing the current Character stats pre Match
@@ -75,14 +76,14 @@ public class PlayMatchControl {
 
 //        // Constructing a new Match using the current values of survivorList and
 //        // zombieList in this instance
-//        Match match = new Match(getSurvivorList(), getZombieList());
-//
-//        // Starting the Match using the start() method
-//        match.start();
-//
+          Match match = new Match(getSurvivorList(), getZombieList());
+
+          // Starting the Match using the start() method
+          match.start();
+
 //        // Updating the Match results to reflect in this instances variables
-//        this.survivorList = match.getSurvivorList();
-//        this.zombieList = match.getZombieList();
+          this.survivorList = match.getSurvivorList();
+          this.zombieList = match.getZombieList();
     }
 
     /**
