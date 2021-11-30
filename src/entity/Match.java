@@ -18,29 +18,36 @@ import java.util.ArrayList;
 
 public class Match{
 
-    private ArrayList<Character> survivorList = new ArrayList<>();
-    private ArrayList<Character> zombieList = new ArrayList<>();
+    private final ArrayList<Character> survivorList;
+    private final ArrayList<Character> zombieList;
     private int currentTurn = 0;
-    private Survivor activeSurvivor;
-    private Zombie activeZombie;
 
     public Match(ArrayList<Character> survivorList, ArrayList<Character> zombieList){
-        this.survivorList =  survivorList;
-        this.zombieList = zombieList;
-        this.activeSurvivor = (Survivor) survivorList.get(0);
-        this.activeZombie = (Zombie) zombieList.get(0);
+        this.survivorList =  (ArrayList<Character>) survivorList.clone();
+        this.zombieList = (ArrayList<Character>) zombieList.clone();
     }
 
+    /**
+     * Start the match
+     */
     public void start(){
 
         while(this.getSurvivorCount() > 0 && this.getZombieCount() > 0){
-
+            Character activeSurvivor = this.survivorList.get(0);
+            Character activeZombie = this.zombieList.get(0);
 
             if(this.isSurvivorsTurn()){
+                activeSurvivor.attack(activeZombie);
 
-
+                if(!activeZombie.isAlive()){
+                    this.zombieList.remove(0);
+                }
             }else{
+                activeZombie.attack(activeSurvivor);
 
+                if(!activeSurvivor.isAlive()){
+                    this.survivorList.remove(0);
+                }
             }
 
             this.currentTurn++;
