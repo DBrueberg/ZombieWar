@@ -18,16 +18,65 @@ import java.util.ArrayList;
 
 public class Match{
 
-    private ArrayList<Survivor> survivorList = new ArrayList<>();
-    private ArrayList<Zombie> zombieList = new ArrayList<>();
+    private ArrayList<Character> survivorList = new ArrayList<>();
+    private ArrayList<Character> zombieList = new ArrayList<>();
+    private int currentTurn = 0;
+    private Survivor activeSurvivor;
+    private Zombie activeZombie;
 
-    public Match(ArrayList<Survivor> survivorList, ArrayList<Zombie> zombieList){
-
-        this.survivorList = survivorList;
+    public Match(ArrayList<Character> survivorList, ArrayList<Character> zombieList){
+        this.survivorList =  survivorList;
         this.zombieList = zombieList;
+        this.activeSurvivor = (Survivor) survivorList.get(0);
+        this.activeZombie = (Zombie) zombieList.get(0);
     }
 
     public void start(){
-        System.out.println("Match Started");
+
+        while(this.getSurvivorCount() > 0 && this.getZombieCount() > 0){
+
+
+            if(this.isSurvivorsTurn()){
+
+
+            }else{
+
+            }
+
+            this.currentTurn++;
+        }
     }
+
+    /**
+     * @return Whether it is the survivors' turn
+     */
+    private boolean isSurvivorsTurn(){
+        return (this.currentTurn % 2 == 0);
+    }
+
+    /**
+     * @return The number of survivors left
+     */
+    private int getSurvivorCount(){
+        return this.survivorList.size();
+    }
+
+    /**
+     * @return The number of zombies left
+     */
+    private int getZombieCount(){
+        return this.zombieList.size();
+    }
+
+    /**
+     * Accessor for survivorList
+     * @return value of survivorList
+     */
+    public ArrayList<Character> getSurvivorList(){ return this.survivorList; }
+
+    /**
+     * Accessor for zombieList
+     * @return value of zombieList
+     */
+    public ArrayList<Character> getZombieList(){ return this.survivorList; }
 }
