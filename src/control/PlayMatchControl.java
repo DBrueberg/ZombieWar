@@ -75,7 +75,7 @@ public class PlayMatchControl {
 
 //        // Constructing a new Match using the current values of survivorList and
 //        // zombieList in this instance
-//        Match match = new Match(getSurvivorList(), getZombieList());
+        Match match = new Match(getSurvivorList(), getZombieList());
 //
 //        // Starting the Match using the start() method
 //        match.start();
