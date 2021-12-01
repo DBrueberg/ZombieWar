@@ -43,7 +43,7 @@ public class Report {
         String myString = "";
         myString += "It seems ";
         myString += survivorCount;
-        myString += " have made it to safety.";
+        myString += " have made it to safety.\n";
         return myString;
     }
 
