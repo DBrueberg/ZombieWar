@@ -119,7 +119,6 @@ public class PlayMatchControl {
      */
     private void printStartStats() {
         // Printing out the current pre Match Stats
-        System.out.println("Match Started");
         System.out.println("We have " + survivorList.size() +
                 " survivors trying to make it to safety.");
         System.out.println("But there are " + zombieList.size() +
