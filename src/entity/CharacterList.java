@@ -52,7 +52,7 @@ public class CharacterList {
      */
     private void createSurvivorList() {
         // Generating an int number of Survivor objects to construct
-        int survivorCount = (int) Math.floor(Math.random() * (MAX_SURVIVOR_CHARACTERS + 1));
+        int survivorCount = (int) (Math.floor(Math.random() * MAX_SURVIVOR_CHARACTERS)+1);
         // Declaring a variable to hold the random Survivor subclass
         int survivorType;
 
@@ -81,7 +81,7 @@ public class CharacterList {
      */
     private void createZombieList() {
         // Generating an int number of Zombie objects to construct
-        int zombieCount = (int) Math.floor(Math.random() * (MAX_ZOMBIE_CHARACTERS + 1));
+        int zombieCount = (int) (Math.floor(Math.random() * MAX_ZOMBIE_CHARACTERS)+1);
         // Declaring a variable to hold the random Zombie subclass
         int zombieType;
 
