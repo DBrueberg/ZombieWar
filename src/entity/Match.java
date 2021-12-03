@@ -15,10 +15,10 @@
 //Package name
 package entity;
 
-//Import ArrayList
+//Import needed java utilities
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * The Match Class will run a Match in which Zom
@@ -48,34 +48,63 @@ public class Match {
      *
      * @param x Character that is attacking this round.
      * @param y Character that is defending this round.
+     * @return a boolean isWiped that is true if the attackers are all
+     * dead and false if they are still alive.
      */
-    private void xAttackAllY(ArrayList<Character> x, ArrayList<Character> y) {
-        // Using a forEach loop to traverse through each x/attacker one at a time
-        x.forEach(attacker -> {
-            // Using an Iterator to travers the y/defender List. Iterator is used
-            // to remove a defender in the event that they die
-            Iterator<Character> defender = y.iterator();
+    private boolean xAttackAllY(ArrayList<Character> x, ArrayList<Character> y) {
+        // Priming the boolean to determine if there are attackers alive
+        boolean isWiped = true;
 
-            // While there is a defender in the List to traverse
-            while (defender.hasNext()) {
-                // The next defender is assigned to the currentDefender
-                Character currentDefender = defender.next();
-                // The attacker attacks the currentDefender
-                attacker.attack(currentDefender);
+        // Iterating through the attacker List with a ListIterator
+        ListIterator<Character> attacker = x.listIterator();
+        // Using a while loop to traverse through each x/attacker one at a time
+        while (attacker.hasNext()) {
+            // Saving the currentId to a variable and the current attacker
+            int currentAttackerID = attacker.nextIndex();
+            Character currentAttacker = attacker.next();
 
-                // DEBUG: BATTLE PRINTOUT **************************************************
-//                System.out.println(attacker.getClass().getSimpleName() + " attacks " +
-//                        currentDefender.getClass().getSimpleName());
-//                System.out.println(currentDefender.getClass().getSimpleName() +
-//                " has " + currentDefender.getHealth());
-//                System.out.println();
+            // If the currentAttacker is alive it will attack all alive defenders
+            if (currentAttacker.isAlive()) {
+                // There is an attacker alive so isWiped is set to false
+                isWiped = false;
+                // Using a ListIterator to traverse the y/defender List. Iterator is used
+                // to reference a defender
+                ListIterator<Character> defender = y.listIterator();
 
-                // If the currentDefender dies, they are removed from the List
-                if (!currentDefender.isAlive()) {
-                    defender.remove();
+                // While there is a defender in the List to traverse
+                while (defender.hasNext()) {
+                    // Assigning the current defender ID to a variable
+                    int currentDefenderID = defender.nextIndex();
+
+                    // The next defender is assigned to the currentDefender
+                    Character currentDefender = defender.next();
+
+                    // If the currentDefender is alive they will be attacked
+                    if (currentDefender.isAlive()) {
+                        // The attacker attacks the currentDefender
+                        currentAttacker.attack(currentDefender);
+
+                        // If the currentDefender dies it the information is printed to the screen
+                        if (!currentDefender.isAlive()) {
+                            // Saving the class names to variables to display
+                            String attackerClass = currentAttacker.getClass().getSimpleName();
+                            String defenderClass = currentDefender.getClass().getSimpleName();
+
+                            // Printing out that the defender is dead and what attacker killed them
+                            System.out.println("  " + attackerClass + " " + currentAttackerID +
+                                    " killed " + defenderClass + " " + currentDefenderID);
+
+//                            // DEBUG: **********************HEALTH**********************************
+//                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());
+//                            System.out.println(defenderClass + " hp is " + currentDefender.getHealth());
+                        }
+                    }
                 }
             }
-        });
+        }
+
+        // Returning the living status of the attackers
+        return isWiped;
     }
 
     /**
@@ -86,20 +115,21 @@ public class Match {
      * over.
      */
     public void start() {
+        boolean isWiped = false;
         // This while loop will continue until either all Survivor or Zombie
         // objects are dead in their Lists
-        while (this.getSurvivorCount() > 0 && this.getZombieCount() > 0) {
+        while (!isWiped) {
 
             // If it is the Survivor objects turn to attack each Survivor
             // attacks every Zombie
             if (this.isSurvivorsTurn()) {
                 // Each Survivor will attack every Zombie
-                xAttackAllY(survivorList, zombieList);
+                isWiped = xAttackAllY(survivorList, zombieList);
                 // If it is the Zombie objects turn to attack each Zombie
                 // attacks every Survivor
             } else {
                 // Each Zombie will attack every Survivor
-                xAttackAllY(zombieList, survivorList);
+                isWiped = xAttackAllY(zombieList, survivorList);
             }
 
             // The turn counter is incremented by 1
