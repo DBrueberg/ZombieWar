@@ -40,11 +40,19 @@ public class Report {
      * @return 
      */
     public String toString() {
-        String myString = "";
-        myString += "It seems ";
-        myString += survivorCount;
-        myString += " have made it to safety.\n";
+        String myString;
+        // If there were survivors
+        if (this.survivorCount != 0) {
+            myString = "It seems ";
+            myString += survivorCount;
+            myString += " have made it to safety.\n";
+        }
+        // Else there were not survivors
+        else {
+            myString = "None of the survivors made it.\n";
+        }
+
+        // Returning the String to the caller
         return myString;
     }
-
 }
