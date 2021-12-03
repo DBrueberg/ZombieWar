@@ -73,6 +73,8 @@ public class Match {
                 // If the currentDefender dies, they are removed from the List
                 if (!currentDefender.isAlive()) {
                     defender.remove();
+                    System.out.println(attacker.getClass().getSimpleName()+" "+attacker.getId() + " killed " +
+                       currentDefender.getClass().getSimpleName()+" "+currentDefender.getId());
                 }
             }
         });
