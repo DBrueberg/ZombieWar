@@ -25,6 +25,7 @@ public class Match{
     public Match(ArrayList<Character> survivorList, ArrayList<Character> zombieList){
         this.survivorList =  (ArrayList<Character>) survivorList.clone();
         this.zombieList = (ArrayList<Character>) zombieList.clone();
+
     }
 
     /**
@@ -41,12 +42,16 @@ public class Match{
 
                 if(!activeZombie.isAlive()){
                     this.zombieList.remove(0);
+                    System.out.println(activeSurvivor.getClass().getSimpleName()+" "+activeSurvivor.getId()+" killed "
+                            +activeZombie.getClass().getSimpleName()+" "+activeZombie.getId());
                 }
             }else{
                 activeZombie.attack(activeSurvivor);
 
                 if(!activeSurvivor.isAlive()){
                     this.survivorList.remove(0);
+                    System.out.println(activeZombie.getClass().getSimpleName()+" "+activeZombie.getId()+" killed "
+                            +activeSurvivor.getClass().getSimpleName()+" "+activeSurvivor.getId());
                 }
             }
 

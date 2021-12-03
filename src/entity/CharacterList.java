@@ -43,6 +43,7 @@ public class CharacterList {
         // Generating Survivor and Zombie Lists
         createSurvivorList();
         createZombieList();
+        Character.resetId();
     }
 
     /**
@@ -138,4 +139,5 @@ public class CharacterList {
     public void setZombieList(ArrayList<Character> zombieList) {
         this.zombieList = zombieList;
     }
+
 }
