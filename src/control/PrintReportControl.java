@@ -43,12 +43,18 @@ public class PrintReportControl {
      */
     public PrintReportControl(ArrayList<entity.Character> survivorList, 
             ArrayList<entity.Character> zombieList) {
+        // Assigning the number of Survivor and/or Zombies that are alive
+        // to a variable
+        int survivorAlive = (int) survivorList.parallelStream()
+                .filter(e -> e.isAlive() == true)
+                .count();
+        int zombieAlive = (int) zombieList.parallelStream()
+                .filter(e -> e.isAlive() == true)
+                .count();
 
-        /** Create a new report object passing in the count of survivors
-         * and zombies.
-         */
-        
-        report = new Report(survivorList.size(), zombieList.size());
+        // Create a new report object passing in the count of survivors
+        // and zombies.
+        report = new Report(survivorAlive, zombieAlive);
     }
     
     /**
@@ -58,6 +64,4 @@ public class PrintReportControl {
     public void printReport() {
         System.out.println(report);
     }
-    
-    
 }

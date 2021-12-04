@@ -2,7 +2,8 @@
  * CSC 422 Assignment 5 Part 2
  * Report.java
  * November 29, 2021
- * Updated(Initials, Date, Changes):
+ * Updated(Initials, Date, Changes): CD, 12/3/21, changed final report message 
+ * when there are 0 survivors.
  *
  *
  */
@@ -41,9 +42,17 @@ public class Report {
      */
     public String toString() {
         String myString = "";
-        myString += "It seems ";
-        myString += survivorCount;
-        myString += " have made it to safety.\n";
+        
+        // If there are no survivors
+        if (survivorCount < 1) {
+            myString += "None of the survivors made it.\n";
+        } else {
+            // Otherwise there were some survivors
+            myString += "It seems ";
+            myString += survivorCount;
+            myString += " have made it to safety.\n";
+        }
+        
         return myString;
     }
 

@@ -18,6 +18,9 @@ import entity.Match;
 
 // Importing needed java.util
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The PlayMatchControl Class will handle the flow and control
@@ -46,13 +49,63 @@ public class PlayMatchControl {
     }
 
     /**
-     * The generateCharacterList() method will construct and
-     * return a new CharacterList() using its default constructor.
+     * The mapCharacterList() method retrieves the generated Character Arrays
+     * and maps the Class with the Class quantities. The resulting map is
+     * returned to the caller.
      *
-     * @return - A newly constructed CharacterList.
+     * @return - A Map<String, Integer> containing a class descriptor and the
+     * quantity of that class.
      */
-    private CharacterList generateCharacterList() {
-        return new CharacterList();
+    private Map<String, Integer> mapCharacterList() {
+        // Initializing a new LinkedHashMap to hold the Character quantities
+        Map<String, Integer> characterMap = new LinkedHashMap<>();
+
+        // The subclass names of Zombie and Survivor classes as of 12/02/2021
+        String[] characterArray =
+                {"children", "teachers", "soldiers", "common infected", "tanks"};
+
+        // Creating an array of character descriptors to use as keys and setting all
+        // quantity values to 0
+        for (int i = 0; i < characterArray.length; i++) {
+            characterMap.put(characterArray[i], 0);
+        }
+
+        // Traversing through the Survivor List and counting up each Character quantity
+        survivorList.forEach(survivor -> {
+            // Retrieving the simple class name and assigning it to a String for comparison
+            String survivorClass = survivor.getClass().getSimpleName();
+
+            // If of Class Child it is incremented
+            if (survivorClass.equals("Child")) {
+                characterMap.put("children", characterMap.get("children") + 1);
+            }
+            // If of Class Teacher it is incremented
+            else if (survivorClass.equals("Teacher")) {
+                characterMap.put("teachers", characterMap.get("teachers") + 1);
+            }
+            // If of Class Soldier it is incremented
+            else if (survivorClass.equals("Soldier")) {
+                characterMap.put("soldiers", characterMap.get("soldiers") + 1);
+            }
+        });
+
+        // Traversing through the Zombie List and counting up each Character quantity
+        zombieList.forEach(zombie -> {
+            // Retrieving the simple class name and assigning it to a String for comparison
+            String zombieClass = zombie.getClass().getSimpleName();
+
+            // If of Class CommonInfect it is incremented
+            if (zombieClass.equals("CommonInfect")) {
+                characterMap.put("common infected", characterMap.get("common infected") + 1);
+            }
+            // If of Class Tank it is incremented
+            else if (zombieClass.equals("Tank")) {
+                characterMap.put("tanks", characterMap.get("tanks") + 1);
+            }
+        });
+
+        // Returning the Character map
+        return characterMap;
     }
 
     /**
@@ -76,14 +129,14 @@ public class PlayMatchControl {
 
 //        // Constructing a new Match using the current values of survivorList and
 //        // zombieList in this instance
-          Match match = new Match(getSurvivorList(), getZombieList());
+        Match match = new Match(getSurvivorList(), getZombieList());
 
-          // Starting the Match using the start() method
-          match.start();
+        // Starting the Match using the start() method
+        match.start();
 
 //        // Updating the Match results to reflect in this instances variables
-          this.survivorList = match.getSurvivorList();
-          this.zombieList = match.getZombieList();
+        this.survivorList = match.getSurvivorList();
+        this.zombieList = match.getZombieList();
     }
 
     /**
@@ -93,6 +146,16 @@ public class PlayMatchControl {
     public void createPrintReportControl() {
         PrintReportControl printReportControl = new PrintReportControl(getSurvivorList(), getZombieList());
         printReportControl.printReport();
+    }
+
+    /**
+     * The generateCharacterList() method will construct and
+     * return a new CharacterList() using its default constructor.
+     *
+     * @return - A newly constructed CharacterList.
+     */
+    private CharacterList generateCharacterList() {
+        return new CharacterList();
     }
 
     /**
@@ -118,11 +181,21 @@ public class PlayMatchControl {
      * this instances Character Lists.
      */
     private void printStartStats() {
+        // Calling mapCharacterList to map the Characters and their quantities
+        Map<String, Integer> characterMap = mapCharacterList();
+
         // Printing out the current pre Match Stats
-        System.out.println("We have " + survivorList.size() +
-                " survivors trying to make it to safety.");
-        System.out.println("But there are " + zombieList.size() +
-                " zombies waiting for them.");
+        // First print out survivors
+        System.out.print("We have " + survivorList.size() +
+                " survivors trying to make it to safety");
+        System.out.println(" (" + characterMap.get("children") + " children, " +
+                characterMap.get("teachers") + " teachers, " +
+                characterMap.get("soldiers") + " soldiers)");
+        // Next print out zombies
+        System.out.print("But there are " + zombieList.size() +
+                " zombies waiting for them");
+        System.out.println(" (" + characterMap.get("common infected") +
+                " common infected, " + characterMap.get("tanks") + " tanks)");
     }
 
     /**

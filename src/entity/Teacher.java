@@ -4,6 +4,7 @@
  * November 28, 2021
  * Updated(Initials, Date, Changes):
  *  (DAB, 11/28/2021, added main class comment)
+ *  (DAB, 12/03/2021, added in id constructor)
  *
  */
 
@@ -18,5 +19,10 @@ public class Teacher extends Survivor {
     // Class constructor passing in health and attack to superclass
     public Teacher() {
         super(50, 5);
+    }
+
+    // Class constructor passing in health, attack, and id to superclass
+    public Teacher(int id) {
+        super(50, 5, id);
     }
 }

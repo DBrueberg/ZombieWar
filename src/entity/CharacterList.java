@@ -3,6 +3,8 @@
  * CharacterList.java
  * November 28, 2021
  * Updated(Initials, Date, Changes):
+ *  (DAB, 12/03/2021, CharacterLists are now constructed with
+ *  unique ID's)
  *
  *
  */
@@ -54,6 +56,10 @@ public class CharacterList {
         int survivorCount = (int) (Math.floor(Math.random() * MAX_SURVIVOR_CHARACTERS)+1);
         // Declaring a variable to hold the random Survivor subclass
         int survivorType;
+        // Adding ID's for Zombie Characters
+        int childID = 0;
+        int teacherID = 0;
+        int soldierID = 0;
 
         // The random number of Survivor objects will be constructed
         for (int i = 0; i < survivorCount; i++) {
@@ -61,13 +67,14 @@ public class CharacterList {
             survivorType = (int) Math.floor(Math.random() * (MAX_SURVIVOR_TYPES));
 
             // Using multi-directional control statement to create the correct Survivor
-            // subclass and add it to the survivorList
+            // subclass and add it to the survivorList. ID's are used to construct the
+            // Character objects
             if (survivorType == CHILD) {
-                this.survivorList.add(new Child());
+                this.survivorList.add(new Child(childID++));
             } else if (survivorType == TEACHER) {
-                this.survivorList.add(new Teacher());
+                this.survivorList.add(new Teacher(teacherID++));
             } else if (survivorType == SOLDIER) {
-                this.survivorList.add(new Soldier());
+                this.survivorList.add(new Soldier(soldierID++));
             } else {
                 System.out.println("Error creating survivor list, check in CharacterList.java");
             }
@@ -83,6 +90,9 @@ public class CharacterList {
         int zombieCount = (int) (Math.floor(Math.random() * MAX_ZOMBIE_CHARACTERS)+1);
         // Declaring a variable to hold the random Zombie subclass
         int zombieType;
+        // Adding ID's for Zombie Characters
+        int commonInfectID = 0;
+        int tankId = 0;
 
         // The random number of Zombie objects will be constructed
         for (int i = 0; i < zombieCount; i++) {
@@ -90,11 +100,12 @@ public class CharacterList {
             zombieType = (int) Math.floor(Math.random() * (MAX_ZOMBIE_TYPES));
 
             // Using multi-directional control statement to create the correct Zombie
-            // subclass and add it to the zombieList
+            // subclass and add it to the zombieList. ID's are used to construct the
+            // Character objects
             if (zombieType == COMMON_INFECT) {
-                this.zombieList.add(new CommonInfect());
+                this.zombieList.add(new CommonInfect(commonInfectID++));
             } else if (zombieType == TANK) {
-                this.zombieList.add(new Tank());
+                this.zombieList.add(new Tank(tankId++));
             } else {
                 System.out.println("Error creating zombie list, check in CharacterList.java");
             }
