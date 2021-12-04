@@ -8,6 +8,8 @@
  *  to the Class variables, start() algo, Match Class
  *  main comment)
  *  (DAB, 11/30/2021, Altered the start() algorithm)
+ *  (DAB, 12/03/2021, Changed the start() algo to print out
+ *  deaths based of IDs)
  *
  *
  */
@@ -60,7 +62,9 @@ public class Match {
         // Using a while loop to traverse through each x/attacker one at a time
         while (attacker.hasNext()) {
             // Saving the currentId to a variable and the current attacker
-            int currentAttackerID = attacker.nextIndex();
+            // int currentAttackerID = attacker.nextIndex();
+
+            // Iterating to the next attacker
             Character currentAttacker = attacker.next();
 
             // If the currentAttacker is alive it will attack all alive defenders
@@ -74,7 +78,7 @@ public class Match {
                 // While there is a defender in the List to traverse
                 while (defender.hasNext()) {
                     // Assigning the current defender ID to a variable
-                    int currentDefenderID = defender.nextIndex();
+                    // int currentDefenderID = defender.nextIndex();
 
                     // The next defender is assigned to the currentDefender
                     Character currentDefender = defender.next();
@@ -91,8 +95,8 @@ public class Match {
                             String defenderClass = currentDefender.getClass().getSimpleName();
 
                             // Printing out that the defender is dead and what attacker killed them
-                            System.out.println("  " + attackerClass + " " + currentAttackerID +
-                                    " killed " + defenderClass + " " + currentDefenderID);
+                            System.out.println("  " + attackerClass + " " + currentAttacker.getId() +
+                                    " killed " + defenderClass + " " + currentDefender.getId());
 
 //                            // DEBUG: **********************HEALTH**********************************
 //                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());
