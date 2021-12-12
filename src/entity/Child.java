@@ -25,4 +25,14 @@ public class Child extends Survivor {
     public Child(int id) {
         super(20, 2, id);
     }
+
+    // Class constructor passing in health, attack, and weapon to superclass
+    public Child(Weapon weapon) {
+        super(20, 2, weapon);
+    }
+
+    // Class constructor passing in health, attack, id, and weapon to superclass
+    public Child(int id, Weapon weapon) {
+        super(20, 2, id, weapon);
+    }
 }

@@ -26,4 +26,14 @@ public class Soldier extends Survivor {
     public Soldier(int id) {
         super(100, 10, id);
     }
+
+    // Class constructor passing in health, attack, and weapon to superclass
+    public Soldier(Weapon weapon) {
+        super(100, 10, weapon);
+    }
+
+    // Class constructor passing in health, attack, id, and weapon to superclass
+    public Soldier(int id, Weapon weapon) {
+        super(100, 10, id, weapon);
+    }
 }

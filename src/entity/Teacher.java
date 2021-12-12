@@ -25,4 +25,14 @@ public class Teacher extends Survivor {
     public Teacher(int id) {
         super(50, 5, id);
     }
+
+    // Class constructor passing in health, attack, and weapon to superclass
+    public Teacher(Weapon weapon) {
+        super(50, 5, weapon);
+    }
+
+    // Class constructor passing in health, attack, id, and weapon to superclass
+    public Teacher(int id, Weapon weapon) {
+        super(50, 5, id, weapon);
+    }
 }
