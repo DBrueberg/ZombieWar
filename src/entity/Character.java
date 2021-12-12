@@ -37,7 +37,7 @@ public class Character {
     }
 
      // Attack method calculates the passed in characters health after the attack
-     // and sets the characters health to the result
+     // and sets the characters' health to the result
     public void attack(Character character) {
         // Subtracts the passed in character's health by the attack of this instance
         int healthAfter = character.getHealth() - this.attack;
