@@ -5,6 +5,9 @@
  * Updated(Initials, Date, Changes):
  *  (DAB, 11/28/2021, added main class comment)
  *  (DAB, 12/03/2021, added in id constructor)
+ *  (DAB, 12/12/2021, added in Weapon variable and
+ *  override Character attack() method to include
+ *  Weapon damage)
  *
  */
 
