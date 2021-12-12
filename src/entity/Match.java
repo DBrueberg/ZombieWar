@@ -93,10 +93,18 @@ public class Match {
                             // Saving the class names to variables to display
                             String attackerClass = currentAttacker.getClass().getSimpleName();
                             String defenderClass = currentDefender.getClass().getSimpleName();
+                            String weaponString = "";
+
+                            //Check whether the attacker is a Survivor or Zombie
+                            // Set weaponString using the Survivor's weapon
+                            if(currentAttacker instanceof Survivor){
+                                Weapon weapon = currentAttacker.getWeapon();
+                                weaponString = weapon.toString();
+                            }
 
                             // Printing out that the defender is dead and what attacker killed them
                             System.out.println("  " + attackerClass + " " + currentAttacker.getId() +
-                                    " killed " + defenderClass + " " + currentDefender.getId());
+                                    " killed " + defenderClass + " " + currentDefender.getId() + weaponString);
 
 //                            // DEBUG: **********************HEALTH**********************************
 //                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());
