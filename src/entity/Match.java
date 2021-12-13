@@ -10,7 +10,7 @@
  *  (DAB, 11/30/2021, Altered the start() algorithm)
  *  (DAB, 12/03/2021, Changed the start() algo to print out
  *  deaths based of IDs)
- *
+ * (CDF), 12/12/2021, Altered the death printout to specifiy the weapon if one was used)
  *
  */
 
