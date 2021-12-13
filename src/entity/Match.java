@@ -104,7 +104,7 @@ public class Match {
 
                             // Printing out that the defender is dead and what attacker killed them
                             System.out.println("  " + attackerClass + " " + currentAttacker.getId() +
-                                    " killed " + defenderClass + " " + currentDefender.getId() + weaponString);
+                                    " killed " + defenderClass + " " + currentDefender.getId() + " with the " + weaponString);
 
 //                            // DEBUG: **********************HEALTH**********************************
 //                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());
