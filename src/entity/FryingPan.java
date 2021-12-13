@@ -18,4 +18,10 @@ public class FryingPan extends Weapon{
     public FryingPan(){
         super(6, 0.65);
     }
+
+    // toString method to output the weapon type
+    @Override
+    public String toString(){
+        return "Frying Pan";
+    }
 }

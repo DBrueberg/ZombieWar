@@ -18,4 +18,10 @@ public class SubmachineGun extends Weapon{
     public SubmachineGun(){
         super(16, 0.8);
     }
+
+    // toString method to output the weapon type
+    @Override
+    public String toString(){
+        return "Submachine Gun";
+    }
 }

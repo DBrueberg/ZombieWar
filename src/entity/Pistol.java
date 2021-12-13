@@ -18,4 +18,10 @@ public class Pistol extends Weapon{
     public Pistol(){
         super(12, 0.7);
     }
+
+    // toString method to output the weapon type
+    @Override
+    public String toString(){
+        return "Pistol";
+    }
 }

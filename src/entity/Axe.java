@@ -18,4 +18,10 @@ public class Axe extends Weapon{
     public Axe(){
         super(10, 0.85);
     }
+
+    // toString method to output the weapon type
+    @Override
+    public String toString(){
+        return "Axe";
+    }
 }
