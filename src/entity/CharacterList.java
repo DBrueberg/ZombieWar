@@ -5,6 +5,7 @@
  * Updated(Initials, Date, Changes):
  *  (DAB, 12/03/2021, CharacterLists are now constructed with
  *  unique ID's)
+ *  (CPD, 12/13/2021, Added methods to generate and access weaponCache)
  *
  *
  */
@@ -25,23 +26,35 @@ public class CharacterList {
     // List amounts to be altered by changing the values here
     private static final int MAX_ZOMBIE_CHARACTERS = 20;
     private static final int MAX_SURVIVOR_CHARACTERS = 20;
+    private static final int MAX_WEAPON_CACHE = 10;
     private static final int MAX_ZOMBIE_TYPES = 2;
     private static final int MAX_SURVIVOR_TYPES = 3;
+    private static final int MAX_WEAPON_TYPES = 7;
     private static final int COMMON_INFECT = 0;
     private static final int TANK = 1;
     private static final int CHILD = 0;
     private static final int TEACHER = 1;
     private static final int SOLDIER = 2;
+    private static final int ASSAULT_RIFLE = 0;
+    private static final int AXE = 1;
+    private static final int CROWBAR = 2;
+    private static final int FRYING_PAN = 3;
+    private static final int PISTOL = 4;
+    private static final int SHOTGUN = 5;
+    private static final int SUBMACHINE_GUN = 6;
 
     // The Character ArrayLists Class specific variables
     private ArrayList<Character> survivorList = new ArrayList<>();
     private ArrayList<Character> zombieList = new ArrayList<>();
+    private ArrayList<Weapon> weaponCache = new ArrayList<>();
 
     /**
      * The CharacterList() constructor will populate both survivorList and
      * zombieList with a randomly generated number of Characters.
      */
     public CharacterList() {
+        // First generate the weapon cache
+        createWeaponCache();
         // Generating Survivor and Zombie Lists
         createSurvivorList();
         createZombieList();
@@ -111,6 +124,73 @@ public class CharacterList {
             }
         }
     }
+    
+    /**
+     * The createWeaponCache() method will create a list of Weapon
+     * objects and add them to the Class variable weaponCache.
+     */
+    private void createWeaponCache() {
+        // Generating an int number of weapon objects to construct
+        int weaponCount = (int) (Math.floor(Math.random() * MAX_WEAPON_CACHE)+1);
+        // Declaring a variable to hold the random Weapon subclass
+        int weaponType;
+        // Adding counts that can be used for ID's for Weapon types
+        int assaultRifleCount = 0;
+        int axeCount = 0;
+        int crowbarCount = 0;
+        int fryingPanCount = 0;
+        int pistolCount = 0;
+        int shotgunCount = 0;
+        int submachineGunCount = 0;
+
+        // The random number of Survivor objects will be constructed
+        for (int i = 0; i < weaponCount; i++) {
+            // A random int Survivor subclass is chosen
+            weaponType = (int) Math.floor(Math.random() * (MAX_WEAPON_TYPES));
+
+            // Using multi-directional control statement to create the correct Weapon
+            // subclass and add it to the weaponCache.
+            switch(weaponType) {
+                case ASSAULT_RIFLE:
+                    this.weaponCache.add(new AssaultRifle());
+                    assaultRifleCount++;
+                    break;
+                case AXE:
+                    this.weaponCache.add(new Axe());
+                    axeCount++;
+                    break;
+                case CROWBAR:
+                    this.weaponCache.add(new Crowbar());
+                    crowbarCount++;
+                    break;
+                case FRYING_PAN:
+                    this.weaponCache.add(new FryingPan());
+                    fryingPanCount++;
+                    break;
+                case PISTOL:
+                    this.weaponCache.add(new Pistol());
+                    pistolCount++;
+                    break;
+                case SHOTGUN:
+                    this.weaponCache.add(new Shotgun());
+                    shotgunCount++;
+                    break;
+                case SUBMACHINE_GUN:
+                    this.weaponCache.add(new SubmachineGun());
+                    submachineGunCount++;
+                    break;
+                default:
+                    System.out.println("Error creating weapon cache, check in CharacterList.java");
+                    break;
+            }
+        }
+        
+        // Debug code
+//        System.out.println("Debugging weapon cache");
+//        for (int i=0; i<weaponCache.size(); i++) {
+//            System.out.println("Weapon: " + i + " is " + weaponCache.get(i));
+//        }
+    }
 
     /**
      * Accessor method for survivorList. Will return a clone of the
@@ -131,6 +211,16 @@ public class CharacterList {
     public ArrayList<Character> getZombieList() {
         return (ArrayList<Character>) this.zombieList.clone();
     }
+    
+    /**
+     * Accessor method for weaponCache. Will return a clone of the
+     * original for data integrity.
+     *
+     * @return - value of weaponCache.
+     */
+    public ArrayList<Weapon> getWeaponCache() {
+        return (ArrayList<Weapon>) this.weaponCache.clone();
+    }
 
     /**
      * Mutator method for survivorList.
@@ -148,5 +238,14 @@ public class CharacterList {
      */
     public void setZombieList(ArrayList<Character> zombieList) {
         this.zombieList = zombieList;
+    }
+    
+    /**
+     * Mutator method for weaponCache.
+     *
+     * @param - new value for weaponCache.
+     */
+    public void setWeaponCache(ArrayList<Weapon> weaponCache) {
+        this.weaponCache = weaponCache;
     }
 }
