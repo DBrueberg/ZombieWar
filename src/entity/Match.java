@@ -98,7 +98,7 @@ public class Match {
                             //Check whether the attacker is a Survivor or Zombie
                             // Set weaponString using the Survivor's weapon
                             if(currentAttacker instanceof Survivor){
-                                Weapon weapon = currentAttacker.getWeapon();
+                                Weapon weapon = ((Survivor) currentAttacker.getWeapon());
                                 weaponString = weapon.toString();
                             }
 
