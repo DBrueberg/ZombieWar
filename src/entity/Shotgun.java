@@ -16,6 +16,6 @@ public class Shotgun extends Weapon{
 
     // Class constructor calls the superclass constructor
     public Shotgun(){
-        super(18, 0.1);
+        super(18, 1.0);
     }
 }
