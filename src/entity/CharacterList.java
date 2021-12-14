@@ -6,7 +6,7 @@
  *  (DAB, 12/03/2021, CharacterLists are now constructed with
  *  unique ID's)
  *  (CPD, 12/13/2021, Added methods to generate and access weaponCache)
- *
+ *  (CPD, 12/13/2021, Implemented giving new survivors random weapons)
  *
  */
 
@@ -26,7 +26,6 @@ public class CharacterList {
     // List amounts to be altered by changing the values here
     private static final int MAX_ZOMBIE_CHARACTERS = 20;
     private static final int MAX_SURVIVOR_CHARACTERS = 20;
-    private static final int MAX_WEAPON_CACHE = 10;
     private static final int MAX_ZOMBIE_TYPES = 2;
     private static final int MAX_SURVIVOR_TYPES = 3;
     private static final int MAX_WEAPON_TYPES = 7;
@@ -53,8 +52,6 @@ public class CharacterList {
      * zombieList with a randomly generated number of Characters.
      */
     public CharacterList() {
-        // First generate the weapon cache
-        createWeaponCache();
         // Generating Survivor and Zombie Lists
         createSurvivorList();
         createZombieList();
@@ -73,6 +70,9 @@ public class CharacterList {
         int childID = 0;
         int teacherID = 0;
         int soldierID = 0;
+        
+        // Create cache of random weapons. Each survivor gets a weapon
+        createWeaponCache(survivorCount);
 
         // The random number of Survivor objects will be constructed
         for (int i = 0; i < survivorCount; i++) {
@@ -82,14 +82,19 @@ public class CharacterList {
             // Using multi-directional control statement to create the correct Survivor
             // subclass and add it to the survivorList. ID's are used to construct the
             // Character objects
-            if (survivorType == CHILD) {
-                this.survivorList.add(new Child(childID++));
-            } else if (survivorType == TEACHER) {
-                this.survivorList.add(new Teacher(teacherID++));
-            } else if (survivorType == SOLDIER) {
-                this.survivorList.add(new Soldier(soldierID++));
-            } else {
-                System.out.println("Error creating survivor list, check in CharacterList.java");
+            switch (survivorType) {
+                case CHILD:
+                    this.survivorList.add(new Child(childID++,takeWeapon()));
+                    break;
+                case TEACHER:
+                    this.survivorList.add(new Teacher(teacherID++,takeWeapon()));
+                    break;
+                case SOLDIER:
+                    this.survivorList.add(new Soldier(soldierID++,takeWeapon()));
+                    break;
+                default:
+                    System.out.println("Error creating survivor list, check in CharacterList.java");
+                    break;
             }
         }
     }
@@ -129,9 +134,9 @@ public class CharacterList {
      * The createWeaponCache() method will create a list of Weapon
      * objects and add them to the Class variable weaponCache.
      */
-    private void createWeaponCache() {
-        // Generating an int number of weapon objects to construct
-        int weaponCount = (int) (Math.floor(Math.random() * MAX_WEAPON_CACHE)+1);
+    private void createWeaponCache(int survivorCount) {
+        // Generate a weapon for each survivor
+        int weaponCount = survivorCount;
         // Declaring a variable to hold the random Weapon subclass
         int weaponType;
         // Adding counts that can be used for ID's for Weapon types
@@ -190,6 +195,29 @@ public class CharacterList {
 //        for (int i=0; i<weaponCache.size(); i++) {
 //            System.out.println("Weapon: " + i + " is " + weaponCache.get(i));
 //        }
+    }
+    
+    /**
+     * Method to return a random weapon from the cache
+     * Also removes the weapon from the cache
+     *
+     * @return - random Weapon from weaponCache
+     */
+    public Weapon takeWeapon() {
+        int weaponCount = weaponCache.size();
+//        System.out.println("Weapon cache size is " + weaponCount);
+        
+        // Generate a random index to use in the weaponCache ArrayList
+        int randomWeaponIndex = (int) (Math.floor(Math.random() * weaponCount));
+        
+        // Create a Weapon from the random index
+        Weapon randomWeapon = weaponCache.get(randomWeaponIndex);
+        
+        // Remove the Weapon from the weaponCache so it can't be used twice
+        weaponCache.remove(randomWeaponIndex);
+        
+        // Return random Weapon that has been removed from the cache
+        return randomWeapon;
     }
 
     /**
