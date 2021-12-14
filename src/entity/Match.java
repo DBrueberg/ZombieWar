@@ -99,7 +99,10 @@ public class Match {
                             // Set weaponString using the Survivor's weapon
                             if(currentAttacker instanceof Survivor){
                                 Weapon weapon = ((Survivor) currentAttacker).getWeapon();
-                                weaponString = weapon.toString();
+
+                                if(weapon != null) {
+                                    weaponString = weapon.toString();
+                                }
                             }
 
                             // Printing out that the defender is dead and what attacker killed them
