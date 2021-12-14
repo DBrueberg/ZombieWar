@@ -10,8 +10,7 @@
  *  (DAB, 11/30/2021, Altered the start() algorithm)
  *  (DAB, 12/03/2021, Changed the start() algo to print out
  *  deaths based of IDs)
- * (CDF), 12/12/2021, Altered the death printout to specifiy the weapon if one was used)
- *
+ *  (CDF, 12/12/2021, Altered the death printout to specifiy the weapon if one was used)
  */
 
 //Package name
@@ -101,13 +100,13 @@ public class Match {
                                 Weapon weapon = ((Survivor) currentAttacker).getWeapon();
 
                                 if(weapon != null) {
-                                    weaponString = weapon.toString();
+                                    weaponString = " with the " + weapon.toString();
                                 }
                             }
 
                             // Printing out that the defender is dead and what attacker killed them
                             System.out.println("  " + attackerClass + " " + currentAttacker.getId() +
-                                    " killed " + defenderClass + " " + currentDefender.getId() + " with the " + weaponString);
+                                    " killed " + defenderClass + " " + currentDefender.getId() + weaponString);
 
 //                            // DEBUG: **********************HEALTH**********************************
 //                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());
