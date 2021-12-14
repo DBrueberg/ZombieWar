@@ -11,6 +11,7 @@
  *  (DAB, 12/03/2021, Changed the start() algo to print out
  *  deaths based of IDs)
  *  (CDF, 12/12/2021, Altered the death printout to specifiy the weapon if one was used)
+ *  (CDF, 12/13/2021, Set the weaponString when the toString() method is called to avoid adding unneeded text
  */
 
 //Package name
