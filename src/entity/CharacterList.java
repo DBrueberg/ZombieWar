@@ -139,14 +139,6 @@ public class CharacterList {
         int weaponCount = survivorCount;
         // Declaring a variable to hold the random Weapon subclass
         int weaponType;
-        // Adding counts that can be used for ID's for Weapon types
-        int assaultRifleCount = 0;
-        int axeCount = 0;
-        int crowbarCount = 0;
-        int fryingPanCount = 0;
-        int pistolCount = 0;
-        int shotgunCount = 0;
-        int submachineGunCount = 0;
 
         // The random number of Survivor objects will be constructed
         for (int i = 0; i < weaponCount; i++) {
@@ -158,31 +150,24 @@ public class CharacterList {
             switch(weaponType) {
                 case ASSAULT_RIFLE:
                     this.weaponCache.add(new AssaultRifle());
-                    assaultRifleCount++;
                     break;
                 case AXE:
                     this.weaponCache.add(new Axe());
-                    axeCount++;
                     break;
                 case CROWBAR:
                     this.weaponCache.add(new Crowbar());
-                    crowbarCount++;
                     break;
                 case FRYING_PAN:
                     this.weaponCache.add(new FryingPan());
-                    fryingPanCount++;
                     break;
                 case PISTOL:
                     this.weaponCache.add(new Pistol());
-                    pistolCount++;
                     break;
                 case SHOTGUN:
                     this.weaponCache.add(new Shotgun());
-                    shotgunCount++;
                     break;
                 case SUBMACHINE_GUN:
                     this.weaponCache.add(new SubmachineGun());
-                    submachineGunCount++;
                     break;
                 default:
                     System.out.println("Error creating weapon cache, check in CharacterList.java");
