@@ -10,8 +10,8 @@
  *  (DAB, 11/30/2021, Altered the start() algorithm)
  *  (DAB, 12/03/2021, Changed the start() algo to print out
  *  deaths based of IDs)
- *
- *
+ *  (CDF, 12/12/2021, Altered the death printout to specifiy the weapon if one was used)
+ *  (CDF, 12/13/2021, Set the weaponString when the toString() method is called to avoid adding unneeded text
  */
 
 //Package name
@@ -93,10 +93,21 @@ public class Match {
                             // Saving the class names to variables to display
                             String attackerClass = currentAttacker.getClass().getSimpleName();
                             String defenderClass = currentDefender.getClass().getSimpleName();
+                            String weaponString = "";
+
+                            //Check whether the attacker is a Survivor or Zombie
+                            // Set weaponString using the Survivor's weapon
+                            if(currentAttacker instanceof Survivor){
+                                Weapon weapon = ((Survivor) currentAttacker).getWeapon();
+
+                                if(weapon != null) {
+                                    weaponString = " with the " + weapon.toString();
+                                }
+                            }
 
                             // Printing out that the defender is dead and what attacker killed them
                             System.out.println("  " + attackerClass + " " + currentAttacker.getId() +
-                                    " killed " + defenderClass + " " + currentDefender.getId());
+                                    " killed " + defenderClass + " " + currentDefender.getId() + weaponString);
 
 //                            // DEBUG: **********************HEALTH**********************************
 //                            System.out.println(attackerClass + " hp is " + currentAttacker.getHealth());

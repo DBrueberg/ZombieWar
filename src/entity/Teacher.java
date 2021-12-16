@@ -5,6 +5,7 @@
  * Updated(Initials, Date, Changes):
  *  (DAB, 11/28/2021, added main class comment)
  *  (DAB, 12/03/2021, added in id constructor)
+ *  (DAB, 12/12/2021, added in id/weapon constructor)
  *
  */
 
@@ -24,5 +25,15 @@ public class Teacher extends Survivor {
     // Class constructor passing in health, attack, and id to superclass
     public Teacher(int id) {
         super(50, 5, id);
+    }
+
+    // Class constructor passing in health, attack, and weapon to superclass
+    public Teacher(Weapon weapon) {
+        super(50, 5, weapon);
+    }
+
+    // Class constructor passing in health, attack, id, and weapon to superclass
+    public Teacher(int id, Weapon weapon) {
+        super(50, 5, id, weapon);
     }
 }
